@@ -1,0 +1,38 @@
+
+
+table 
+{ 
+    table-layout: fixed !important; 
+    margin: 0 auto; 
+    font-size: 12px;
+    font-family: sans-serif; 
+} 
+img 
+{ 
+    -ms-interpolation-mode:bicubic; 
+} 
+p
+{ 
+    color: #000;
+    margin: 0 !important;
+    font-family: sans-serif; 
+    line-height: 1.25!important;
+    font-size: 12px !important; 
+} 
+strong
+{
+    color:#000000;
+} 
+th
+{
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding:5px 0;
+    text-transform: capitalize;
+}
+
+.transcript_seal_sign {
+    position: absolute;
+    bottom: 100px;
+    right: 50px;
+}
