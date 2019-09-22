@@ -19,11 +19,11 @@ const Template = ({ document }) => {
   const recipientName = get(certificate, "recipient.name");
   const attainmentDate = get(certificate, "attainmentDate");
   const SerialNumber = get(certificate, "additionalData.serialNumber");
-  const signature1 = get(certificate, "additionalData.signature1");
-  const signature2 = get(certificate, "additionalData.signature2");
-  const signature3 = get(certificate, "additionalData.signature3");
-  const signature4 = get(certificate, "additionalData.signature4");
-  const seal = get(certificate, "additionalData.seal");
+  const signature1 = get(certificate, "additionalData.Signature1");
+  const signature2 = get(certificate, "additionalData.Signature2");
+  const signature3 = get(certificate, "additionalData.Signature3");
+  const signature4 = get(certificate, "additionalData.Signature4");
+  const seal = get(certificate, "additionalData.Seal");
 
   const degreeFontSize = getDegreeFontSize(certificateName);
 
@@ -104,13 +104,13 @@ const Template = ({ document }) => {
           >
             <img src={signature1} alt="" />
             <br />
-            <img src={signature2} alt="" />
+            <img src={signature3} alt="" />
           </div>
           <div style={{ width: "20%" }}>
             <img src={seal} alt="" />
           </div>
           <div style={{ width: "40%", textAlign: "left", paddingLeft: "25px" }}>
-            <img src={signature3} alt="" />
+            <img src={signature2} alt="" />
             <br />
             <img src={signature4} alt="" />
           </div>

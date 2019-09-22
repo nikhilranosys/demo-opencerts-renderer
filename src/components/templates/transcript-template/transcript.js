@@ -15,8 +15,8 @@ export const renderHeader = transcript => {
   const name = get(transcript, "recipient.name");
   const dob = get(transcript, "recipient.birthDate");
   const studentId = get(transcript, "recipient.studentId");
-  const doEnrolment = get(transcript, "transcriptDate.enrolmentDate");
-  const doIssue = tz(new Date(get(transcript, "transcriptDate.transcriptDate")), TIMEZONE)
+  const doEnrolment = get(transcript, "additionalData.enrolmentDate");
+  const doIssue = tz(new Date(get(transcript, "additionalData.transcriptDate")), TIMEZONE)
     .format("DD MMM YYYY")
     .toUpperCase();
 
@@ -214,24 +214,27 @@ export const renderTranscripts = transcript => {
 };
 
 export const printContentWithNewLine = content => {
-  debugger;
+  
   let result = [];
-  content = content.replace(/ /g, "\u00a0");
 
-  let lines = content.split(/\|\|/g);
-
-  for(let i = 0; i < lines.length; i++)
+  if(content != undefined)
   {
-    result.push(
-      lines[i]
-    );
+    content = content.replace(/ /g, "\u00a0");
 
-    if(i != lines.length - 1)
+    let lines = content.split(/\|\|/g);
+
+    for(let i = 0; i < lines.length; i++)
     {
-      result.push(<br/>);
+      result.push(
+        lines[i]
+      );
+
+      if(i != lines.length - 1)
+      {
+        result.push(<br/>);
+      }
     }
   }
-
   return result;
 }
 
@@ -351,7 +354,7 @@ const Template = ({ document }) => {
   const parent = [];
 
   const pageCount = getTotalPages(certificate.transcript);
-
+  
   while (current < certificate.transcript.length - 1) {
     parent.push(
       <div
@@ -445,8 +448,8 @@ const Template = ({ document }) => {
           </tbody>
         </table>
         <div className="transcript_seal_sign">
-          <img src={certificate.additionalData.Signature1} alt="" style={{width: "250px"}} />
-          <img src={certificate.additionalData.seal} alt="" style={{width: "250px"}} />
+          <img src={certificate.additionalData.Signature1} alt="" />
+          <img src={certificate.additionalData.Seal} alt="" />
         </div>
       </div>
     );
