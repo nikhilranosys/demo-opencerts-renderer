@@ -16,9 +16,8 @@ export const renderHeader = transcript => {
   const dob = get(transcript, "recipient.birthDate");
   const studentId = get(transcript, "recipient.studentId");
   const doEnrolment = get(transcript, "additionalData.enrolmentDate");
-  const doIssue = tz(new Date(get(transcript, "additionalData.transcriptDate")), TIMEZONE)
-    .format("DD MMM YYYY")
-    .toUpperCase();
+  const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE)
+    .format("DD MMM YYYY");
 
   return (
     <table width="100%">
