@@ -16,8 +16,7 @@ export const renderHeader = transcript => {
   const dob = get(transcript, "recipient.birthDate");
   const studentId = get(transcript, "recipient.studentId");
   const doEnrolment = get(transcript, "additionalData.enrolmentDate");
-  const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE)
-    .format("DD MMM YYYY");
+  const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMM YYYY");
 
   return (
     <table width="100%">
@@ -168,11 +167,26 @@ export const renderTranscripts = transcript => {
         current = i + 1;
         break;
       } else if (transcript[i].type === 4) {
-        table.push(
-          <tr key={(keyCount += 1).toString()}>
-            <td colSpan={5}>{transcript[i].column1.replace(/ /g, "\u00a0")}</td>
-          </tr>
-        );
+        if (transcript[i].tabs === 1) {
+          table.push(
+            <tr key={(keyCount += 1).toString()}>
+              <td colSpan={5}>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {transcript[i].column1.replace(/ /g, "\u00a0")}
+              </td>
+            </tr>
+          );
+        }
+        else {
+          table.push(
+            <tr key={(keyCount += 1).toString()}>
+              <td colSpan={5}>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {transcript[i].column1.replace(/ /g, "\u00a0")}
+              </td>
+            </tr>
+          );
+        }
       }
     }
     else
@@ -185,7 +199,10 @@ export const renderTranscripts = transcript => {
           </td>
           <td className="text-center">{transcript[i].overall}</td>
           <td className="text-center">{transcript[i].grade}</td>
-          <td className="text-center">{transcript[i].score}</td>
+          <td className="text-center">
+            {transcript[i].score}
+            <sup style={{ marginLeft: "5px", fontSize: "8px" }}>{transcript[i].superscript}</sup>
+          </td>
         </tr>
       );
     }
@@ -391,8 +408,8 @@ const Template = ({ document }) => {
                 <table width="100%">
                   <tbody>
                     <tr style={{ padding: "0 10px" }}>
-                      <th width="4%" />
-                      <th width="62%" style={{ textAlign: "left" }}>
+                      <th width="66%" style={{ textAlign: "left" }}>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         Course Description
                       </th>
                       <th width="13%" style={{ textAlign: "center" }}>
