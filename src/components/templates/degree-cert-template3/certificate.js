@@ -97,24 +97,32 @@ const Template = ({ document }) => {
           style={{
             fontSize: "22px",
             fontWeight: "bold",
-            marginTop: "80px"
+            marginTop: "40px",
+            maxHeight: "250px"
           }}
         >
           <div
-            style={{ width: "40%", textAlign: "right", paddingRight: "25px" }}
+            style={{ width: "40%", paddingRight: "25px", lineHeight: "250px" }}
           >
-            <img src={signature1} alt="" />
-            <br />
-            <img src={signature3} alt="" />
+            <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+              <img src={signature1} alt="" className="cert_sign" />
+              <br />
+              <img src={signature3} alt="" className="cert_sign" />
+            </span>
           </div>
-          <div style={{ width: "20%" }}>
-            <img src={seal} alt="" style={{marginRight: "10px"}} />
-            <img src={seal2} alt="" style={{marginLeft: "10px"}} />
+          <div style={{ width: "20%", lineHeight: "250px" }}>
+            <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+              <img src={seal} alt="" className="cert_seal" />
+              <br />
+              <img src={seal2} alt=""  className="cert_seal" />
+            </span>
           </div>
-          <div style={{ width: "40%", textAlign: "left", paddingLeft: "25px" }}>
-            <img src={signature2} alt="" />
-            <br />
-            <img src={signature4} alt="" />
+          <div style={{ width: "40%", paddingLeft: "25px", lineHeight: "250px" }}>
+            <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+              <img src={signature2} alt="" className="cert_sign" />
+              <br />
+              <img src={signature4} alt="" className="cert_sign" />
+            </span>
           </div>
         </div>
       </div>

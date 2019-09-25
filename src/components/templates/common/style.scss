@@ -33,6 +33,21 @@ th
 
 .transcript_seal_sign {
     position: absolute;
-    bottom: 100px;
-    right: 50px;
+    bottom: 70px;
+    right: 25px;
+}
+
+.transcript_seal_sign img {
+    max-width: 250px;
+    max-height: 200px;
+}
+
+.cert_sign {
+    max-width: 250px;
+    max-height: 100px;
+}
+
+.cert_seal {
+    max-width: 150px;
+    max-height: 125px;
 }
