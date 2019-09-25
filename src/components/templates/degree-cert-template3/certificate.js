@@ -113,7 +113,6 @@ const Template = ({ document }) => {
           <div style={{ width: "20%", lineHeight: "250px" }}>
             <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
               <img src={seal} alt="" className="cert_seal" />
-              <br />
               <img src={seal2} alt=""  className="cert_seal" />
             </span>
           </div>
