@@ -33,8 +33,8 @@ th
 
 .transcript_seal_sign {
     position: absolute;
-    bottom: 70px;
-    right: 25px;
+    bottom: 90px;
+    right: 50px;
 }
 
 .transcript_seal_sign img {
@@ -55,4 +55,19 @@ th
 .cert_seal2 {
     max-width: 250px;
     max-height: 250px;
+}
+.heading-panel-text{
+    width: 100%;
+    height: 115px;
+    display: table;
+}
+.degree-text{
+    text-align: center;
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.honors-text{
+    text-align: center;
+    width: 100%;
 }

@@ -3,7 +3,7 @@ import { get } from "lodash";
 import React from "react";
 import { tz } from "moment-timezone";
 
-import { TRANS_BKG_IMG } from "../common/images";
+import { TRANS_BKG_IMG, TRANS_BACK_IMG } from "../common/images";
 import "../common/style.scss";
 import "../common/print.scss";
 
@@ -15,8 +15,8 @@ export const renderHeader = transcript => {
   const name = get(transcript, "recipient.name");
   const dob = get(transcript, "recipient.birthDate");
   const studentId = get(transcript, "recipient.studentId");
-  const doEnrolment = get(transcript, "additionalData.enrolmentDate");
-  const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMM YYYY");
+  const doEnrolment = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMMM YYYY");
+  const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMMM YYYY");
 
   return (
     <table width="100%">
@@ -381,13 +381,12 @@ const Template = ({ document }) => {
           margin: "auto",
           backgroundRepeat: "no-repeat",
           backgroundImage: `url('${TRANS_BKG_IMG}')`,
-          pageBreakAfter:
-            current >= certificate.transcript.length ? "none" : "always",
+          pageBreakAfter: "always",
           marginTop: "60px",
-          padding: "40px 5px",
+          padding: "40px 30px",
           backgroundSize: "cover",
           backgroundPosition: "canter center",
-          height: "1415px",
+          height: "1395px",
           position: "relative"
         }}
       >
@@ -470,6 +469,25 @@ const Template = ({ document }) => {
       </div>
     );
   }
+
+  parent.push(
+    <div
+        key={(keyCount += 1).toString()}
+        className="transcript"
+        style={{
+          width: "1000px",
+          margin: "auto",
+          backgroundRepeat: "no-repeat",
+          backgroundImage: `url('${TRANS_BACK_IMG}')`,
+          marginTop: "60px",
+          padding: "40px 30px",
+          backgroundSize: "cover",
+          backgroundPosition: "canter center",
+          height: "1395px",
+          position: "relative"
+        }}
+      ></div>
+  );
 
   return parent;
 };

@@ -15,7 +15,7 @@ const Template = ({ document }) => {
   
   // Declaring what variables will be available to the template from the certificate
   const certificateName = get(certificate, "name");
-  const honors = get(certificate, "additionalData.honors", "\u00a0");
+  const honors = get(certificate, "additionalData.honors");
   const recipientName = get(certificate, "recipient.name");
   const attainmentDate = get(certificate, "attainmentDate");
   const SerialNumber = get(certificate, "additionalData.serialNumber");
@@ -66,20 +66,19 @@ const Template = ({ document }) => {
             color: "#9c9062"
           }}
         >
-          <div className="col-md-12" style={{
+          <div className="heading-panel-text" style={{
                 fontSize: degreeFontSize + "px"
-              }}>{certificateName}</div>
-        </div>
-        <div
-          className="row"
-          style={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            color: "#9c9062",
-            marginTop: "10px"
-          }}
-        >
-          <div className="col-md-12">{honors}</div>
+              }}>
+              <div className="degree-text" style={{textAlign: "center",width: "100%"}}>
+                {certificateName}
+                <div className="honors-text" style={{textAlign: "center",width: "100%",
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  color: "#9c9062",
+                  marginTop: "10px",
+                  textTransform: "none"}}>{honors}</div>
+              </div>              
+            </div>              
         </div>
         <div
           className="row"
