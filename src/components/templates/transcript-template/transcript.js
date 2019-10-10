@@ -483,7 +483,7 @@ const Template = ({ document }) => {
           padding: "40px 30px",
           backgroundSize: "cover",
           backgroundPosition: "canter center",
-          height: "1395px",
+          height: "1290px",
           position: "relative"
         }}
       ></div>
