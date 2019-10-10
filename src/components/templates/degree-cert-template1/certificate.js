@@ -4,7 +4,7 @@ import React from "react";
 import { tz } from "moment-timezone";
 
 import { CERT1_BKG_IMG } from "../common/images";
-import { getDegreeFontSize } from "../common/functions";
+import { getDegreeFontSize, getNameFontSize } from "../common/functions";
 import "../common/style.scss";
 import "../common/print.scss";
 
@@ -27,7 +27,7 @@ const Template = ({ document }) => {
 
   const degreeFontSize = getDegreeFontSize(certificateName);
 
-  const awardDate = tz(attainmentDate, TIMEZONE).format("DD MMM YYYY");
+  const awardDate = tz(attainmentDate, TIMEZONE).format("DD MMMM YYYY");
 
   return (
     <div
@@ -48,7 +48,8 @@ const Template = ({ document }) => {
         <div
           className="row"
           style={{
-            fontSize: "35px",
+            fontSize: getNameFontSize(recipientName) + "px",
+            lineHeight: "55px",
             fontWeight: "bold",
             textTransform: "uppercase",
             marginTop: "225px"

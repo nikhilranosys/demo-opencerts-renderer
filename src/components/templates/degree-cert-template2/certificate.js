@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
 import { get } from "lodash";
 import React from "react";
+import { tz } from "moment-timezone";
 
 import { CERT2_BKG_IMG } from "../common/images";
-import { getDegreeFontSize } from "../common/functions";
+import { getDegreeFontSize, getNameFontSize } from "../common/functions";
 import "../common/style.scss";
 import "../common/print.scss";
+
+export const TIMEZONE = "Asia/Singapore";
 
 const Template = ({ document }) => {
   const certificate = document;
@@ -13,6 +16,7 @@ const Template = ({ document }) => {
   // Declaring what variables will be available to the template from the certificate
   const certificateName = get(certificate, "name");
   const recipientName = get(certificate, "recipient.name");
+  const attainmentDate = get(certificate, "attainmentDate");
   const SerialNumber = get(certificate, "additionalData.serialNumber");
   const signature1 = get(certificate, "additionalData.Signature1");
   const signature2 = get(certificate, "additionalData.Signature2");
@@ -21,6 +25,28 @@ const Template = ({ document }) => {
   const seal = get(certificate, "additionalData.Seal");
 
   const degreeFontSize = getDegreeFontSize(certificateName);
+
+  const awardDate = tz(attainmentDate, TIMEZONE).format("DD MMMM YYYY");
+
+  let index = certificateName.indexOf("GRADUATE DIPLOMA IN") + 20;
+
+  const degreeFirstPart = certificateName.substring(0, index);
+  const degreeSecondPart = certificateName.substring(index, certificateName.lineHeight);
+debugger;
+  let degreeName = null;
+
+  if(index == -1)
+  {
+    degreeName = (<div className="col-md-12" style={{
+                    fontSize: degreeFontSize + "px"
+                  }}>{getDegreeFontSize(certificateName)}</div>);
+  }
+  else
+  {
+    degreeName = (<div className="col-md-12" style={{
+                    fontSize: getDegreeFontSize(degreeSecondPart) + "px"
+                  }}>{degreeFirstPart}<br/>{degreeSecondPart}</div>);
+  }
   
   return (
         <div
@@ -44,7 +70,8 @@ const Template = ({ document }) => {
             <div
               className="row"
               style={{
-                fontSize: "35px",
+                fontSize: getNameFontSize(recipientName) + "px",
+                lineHeight: "55px",
                 fontWeight: "bold",
                 textTransform: "uppercase",
                 marginTop: "295px"
@@ -61,16 +88,25 @@ const Template = ({ document }) => {
                 color: "#9c9062"
               }}
             >
-              <div className="col-md-12" style={{
-                fontSize: degreeFontSize + "px"
-              }}>{certificateName}</div>
+              {degreeName}
             </div>
             <div
               className="row"
               style={{
                 fontSize: "22px",
                 fontWeight: "bold",
-                marginTop: "150px",
+                marginTop: "30px",
+                maxHeight: "250px"
+              }}
+            >
+              <div className="col-md-12"><span style={{ fontWeight: "normal" }}>on</span> {awardDate}</div>
+            </div>
+            <div
+              className="row"
+              style={{
+                fontSize: "22px",
+                fontWeight: "bold",
+                marginTop: (index == -1 ? "100" : "48") + "px",
                 maxHeight: "200px"
               }}
             >
@@ -94,7 +130,7 @@ const Template = ({ document }) => {
                 </span>
               </div>
               <div
-                style={{ width: "40%", paddingLeft: "25px", lineHeight: "200px", paddingLeft: "150px" }}
+                style={{ width: "40%", paddingLeft: "25px", lineHeight: "200px", paddingRight: "150px" }}
               >
                 <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
                   <img src={signature2} alt="" className="cert_sign" />
