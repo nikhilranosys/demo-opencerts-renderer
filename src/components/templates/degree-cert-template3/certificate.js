@@ -112,8 +112,8 @@ const Template = ({ document }) => {
           </div>
           <div style={{ width: "30%", lineHeight: "250px" }}>
             <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
-              <img src={seal} alt="" className="cert_seal" />
-              <img src={seal2} alt=""  className="cert_seal" />
+              <img src={seal} alt="" className="cert_seal" style={{ marginRight: "25px" }} />
+              <img src={seal2} alt=""  className="cert_seal" style={{ marginLeft: "25px" }} />
             </span>
           </div>
           <div style={{ width: "35%", paddingLeft: "25px", lineHeight: "250px", paddingRight: "110px" }}>
