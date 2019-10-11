@@ -32,7 +32,7 @@ const Template = ({ document }) => {
   const degreeFirstPart = certificateName.substring(0, index);
   const degreeSecondPart = certificateName.substring(index, certificateName.length);
 
-  const degreeFontSize = getDegreeFontSize(degreeFirstPart.length > degreeSecondPart.length ? degreeFirstPart : degreeSecondPart);
+  let degreeFontSize = getDegreeFontSize(certificateName);
 
   let degreeName = null;
 
@@ -52,6 +52,8 @@ const Template = ({ document }) => {
       const degreeFirstPart = certificateName.substring(0, index);
       const degreeSecondPart = certificateName.substring(index, certificateName.length);
 
+      degreeFontSize = getDegreeFontSize(degreeFirstPart);
+
       degreeName = (<div className="col-md-12" style={{
         fontSize: degreeFontSize + "px"
       }}>{degreeFirstPart}<br/>{degreeSecondPart}</div>);
@@ -59,9 +61,11 @@ const Template = ({ document }) => {
   }
   else
   {
+    degreeFontSize = getDegreeFontSize(degreeFirstPart);
+
     degreeName = (<div className="col-md-12" style={{
                     fontSize: degreeFontSize + "px"
-                  }}>{degreeFirstPart}<br/><span style={{ textTransform: "none" }}>{degreeSecondPart}</span></div>);
+                  }}>{degreeFirstPart}<span style={{ marginTop: "-15px", display: "block", textTransform: "none", fontSize: (degreeFontSize-15) + "px" }}>{degreeSecondPart}</span></div>);
   }
 
   return (

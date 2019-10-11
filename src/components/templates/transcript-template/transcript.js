@@ -15,8 +15,8 @@ export const renderHeader = transcript => {
   const name = get(transcript, "recipient.name");
   const dob = get(transcript, "recipient.birthDate");
   const studentId = get(transcript, "recipient.studentId");
-  const doEnrolment = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMMM YYYY");
-  const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMMM YYYY");
+  const doEnrolment = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMM YYYY");
+  const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMM YYYY");
 
   return (
     <table width="100%">
@@ -172,7 +172,7 @@ export const renderTranscripts = transcript => {
             <tr key={(keyCount += 1).toString()}>
               <td colSpan={5}>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {transcript[i].column1.replace(/ /g, "\u00a0")}
+                {transcript[i].column1.replace(/ /g, "\u00a0").replace(/\\/g, "\"")}
               </td>
             </tr>
           );
@@ -182,7 +182,7 @@ export const renderTranscripts = transcript => {
             <tr key={(keyCount += 1).toString()}>
               <td colSpan={5}>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {transcript[i].column1.replace(/ /g, "\u00a0")}
+                {transcript[i].column1.replace(/ /g, "\u00a0").replace(/\\/g, "\"")}
               </td>
             </tr>
           );
@@ -281,21 +281,21 @@ export const renderDegree = footer => {
         >
           <p
             dangerouslySetInnerHTML={{
-              __html: footer[i].column1
+              __html: (footer[i].column1 == undefined ? "" : footer[i].column1)
                 .replace(/ /g, "\u00a0")
                 .replace(/\|\|/g, "<br/>")
             }}
           />
           <p
             dangerouslySetInnerHTML={{
-              __html: footer[i].column3
+              __html: (footer[i].column3 == undefined ? "" : footer[i].column3)
                 .replace(/ /g, "\u00a0")
                 .replace(/\|\|/g, "<br/>")
             }}
           />
           <p
             dangerouslySetInnerHTML={{
-              __html: footer[i].column4
+              __html: (footer[i].column4 == undefined ? "" : footer[i].column4)
                 .replace(/ /g, "\u00a0")
                 .replace(/\|\|/g, "<br/>")
             }}
