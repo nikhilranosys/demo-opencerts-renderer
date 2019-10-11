@@ -18,16 +18,51 @@ const Template = ({ document }) => {
   const honors = get(certificate, "additionalData.honors");
   const recipientName = get(certificate, "recipient.name");
   const attainmentDate = get(certificate, "attainmentDate");
-  const SerialNumber = get(certificate, "additionalData.serialNumber");
+  const SerialNumber = get(certificate, "additionalData.SerialNumber");
   const signature1 = get(certificate, "additionalData.Signature1");
   const signature2 = get(certificate, "additionalData.Signature2");
   const signature3 = get(certificate, "additionalData.Signature3");
   const signature4 = get(certificate, "additionalData.Signature4");
   const seal = get(certificate, "additionalData.Seal");
 
-  const degreeFontSize = getDegreeFontSize(certificateName);
-
   const awardDate = tz(attainmentDate, TIMEZONE).format("DD MMMM YYYY");
+  
+  let index = certificateName.indexOf("(");
+
+  const degreeFirstPart = certificateName.substring(0, index);
+  const degreeSecondPart = certificateName.substring(index, certificateName.length);
+
+  const degreeFontSize = getDegreeFontSize(degreeFirstPart.length > degreeSecondPart.length ? degreeFirstPart : degreeSecondPart);
+
+  let degreeName = null;
+
+  if(index == -1)
+  {
+    index = certificateName.toUpperCase().indexOf("MASTER OF LAWS IN CROSS-BORDER BUSINESS AND");
+
+    if(index == -1)
+    {
+      degreeName = (<div className="col-md-12" style={{
+                      fontSize: degreeFontSize + "px"
+                    }}>{certificateName}</div>);
+    }
+    else
+    {
+      index += 43;
+      const degreeFirstPart = certificateName.substring(0, index);
+      const degreeSecondPart = certificateName.substring(index, certificateName.length);
+
+      degreeName = (<div className="col-md-12" style={{
+        fontSize: degreeFontSize + "px"
+      }}>{degreeFirstPart}<br/>{degreeSecondPart}</div>);
+    }
+  }
+  else
+  {
+    degreeName = (<div className="col-md-12" style={{
+                    fontSize: degreeFontSize + "px"
+                  }}>{degreeFirstPart}<br/><span style={{ textTransform: "none" }}>{degreeSecondPart}</span></div>);
+  }
 
   return (
     <div
@@ -63,20 +98,19 @@ const Template = ({ document }) => {
             fontSize: "35px",
             fontWeight: "bold",
             textTransform: "uppercase",
-            marginTop: "60px",
+            marginTop: "50px",
             color: "#9c9062"
           }}
         >
           <div className="heading-panel-text" style={{
                 fontSize: degreeFontSize + "px"
               }}>
-              <div className="degree-text" style={{textAlign: "center",width: "100%"}}>
-                {certificateName}
+              <div className="degree-text" style={{textAlign: "center",width: "100%", height: "150px"}}>
+                {degreeName}
                 <div className="honors-text" style={{textAlign: "center",width: "100%",
                   fontSize: "30px",
                   fontWeight: "bold",
                   color: "#9c9062",
-                  marginTop: "10px",
                   textTransform: "none"}}>{honors}</div>
               </div>              
             </div>              
@@ -86,7 +120,7 @@ const Template = ({ document }) => {
           style={{
             fontSize: "22px",
             fontWeight: "bold",
-            marginTop: "110px",
+            marginTop: "75px",
             maxHeight: "250px"
           }}
         >
@@ -106,7 +140,7 @@ const Template = ({ document }) => {
           >
             <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
               <img src={signature1} alt="" className="cert_sign" />
-              <br />
+              <div style={{ padding: "5px" }}></div>
               <img src={signature3} alt="" className="cert_sign" />
             </span>
           </div>
@@ -118,7 +152,7 @@ const Template = ({ document }) => {
           <div style={{ width: "40%", paddingLeft: "25px", lineHeight: "200px", paddingRight: "150px" }}>
             <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
               <img src={signature2} alt="" className="cert_sign" />
-              <br />
+              <div style={{ padding: "5px" }}></div>
               <img src={signature4} alt="" className="cert_sign" />
             </span>
           </div>

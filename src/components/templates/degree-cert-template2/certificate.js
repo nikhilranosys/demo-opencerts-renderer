@@ -17,29 +17,27 @@ const Template = ({ document }) => {
   const certificateName = get(certificate, "name");
   const recipientName = get(certificate, "recipient.name");
   const attainmentDate = get(certificate, "attainmentDate");
-  const SerialNumber = get(certificate, "additionalData.serialNumber");
+  const SerialNumber = get(certificate, "additionalData.SerialNumber");
   const signature1 = get(certificate, "additionalData.Signature1");
   const signature2 = get(certificate, "additionalData.Signature2");
   const signature3 = get(certificate, "additionalData.Signature3");
   const signature4 = get(certificate, "additionalData.Signature4");
   const seal = get(certificate, "additionalData.Seal");
 
-  const degreeFontSize = getDegreeFontSize(certificateName);
-
   const awardDate = tz(attainmentDate, TIMEZONE).format("DD MMMM YYYY");
 
-  let index = certificateName.indexOf("GRADUATE DIPLOMA IN") + 20;
+  let index = certificateName.toUpperCase().indexOf("GRADUATE DIPLOMA IN");
+  let start = index + 20;
+  const degreeFirstPart = certificateName.substring(0, start);
+  const degreeSecondPart = certificateName.substring(start  , certificateName.length);
 
-  const degreeFirstPart = certificateName.substring(0, index);
-  const degreeSecondPart = certificateName.substring(index, certificateName.lineHeight);
-debugger;
   let degreeName = null;
 
   if(index == -1)
   {
     degreeName = (<div className="col-md-12" style={{
-                    fontSize: degreeFontSize + "px"
-                  }}>{getDegreeFontSize(certificateName)}</div>);
+                    fontSize: getDegreeFontSize(certificateName) + "px"
+                  }}>{certificateName}</div>);
   }
   else
   {
@@ -120,7 +118,7 @@ debugger;
               >
                 <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
                   <img src={signature1} alt="" className="cert_sign" />
-                  <br />
+                  <div style={{ padding: "5px" }}></div>
                   <img src={signature3} alt="" className="cert_sign" />
                 </span>
               </div>
@@ -134,7 +132,7 @@ debugger;
               >
                 <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
                   <img src={signature2} alt="" className="cert_sign" />
-                  <br />
+                  <div style={{ padding: "5px" }}></div>
                   <img src={signature4} alt="" className="cert_sign" />
                 </span>
               </div>

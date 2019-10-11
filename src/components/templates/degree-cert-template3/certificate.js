@@ -18,7 +18,7 @@ const Template = ({ document }) => {
   const honors = get(certificate, "additionalData.honors");
   const recipientName = get(certificate, "recipient.name");
   const attainmentDate = get(certificate, "attainmentDate");
-  const SerialNumber = get(certificate, "additionalData.serialNumber");
+  const SerialNumber = get(certificate, "additionalData.SerialNumber");
   const signature1 = get(certificate, "additionalData.Signature1");
   const signature2 = get(certificate, "additionalData.Signature2");
   const signature3 = get(certificate, "additionalData.Signature3");
@@ -106,7 +106,7 @@ const Template = ({ document }) => {
           >
             <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
               <img src={signature1} alt="" className="cert_sign" />
-              <br />
+              <div style={{ padding: "5px" }}></div>
               <img src={signature3} alt="" className="cert_sign" />
             </span>
           </div>
@@ -119,7 +119,7 @@ const Template = ({ document }) => {
           <div style={{ width: "35%", paddingLeft: "25px", lineHeight: "250px", paddingRight: "110px" }}>
             <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
               <img src={signature2} alt="" className="cert_sign" />
-              <br />
+              <div style={{ padding: "5px" }}></div>
               <img src={signature4} alt="" className="cert_sign" />
             </span>
           </div>
