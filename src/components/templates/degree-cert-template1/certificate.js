@@ -65,7 +65,7 @@ const Template = ({ document }) => {
 
     degreeName = (<div className="col-md-12" style={{
                     fontSize: degreeFontSize + "px"
-                  }}>{degreeFirstPart}<span style={{ marginTop: "-15px", display: "block", textTransform: "none", fontSize: (degreeFontSize-15) + "px" }}>{degreeSecondPart}</span></div>);
+                  }}>{degreeFirstPart}<span style={{ marginTop: "-15px", display: "block", textTransform: "none", fontSize: (degreeFontSize-11) + "px" }}>{degreeSecondPart}</span></div>);
   }
 
   return (

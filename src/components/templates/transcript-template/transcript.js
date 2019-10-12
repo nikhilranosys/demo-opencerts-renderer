@@ -262,12 +262,14 @@ export const renderDegree = footer => {
       <td
         key={(keyCount += 1).toString()}
         width="50%"
-        style={{ border: "2px solid #000", padding: "10px" }}
+        style={{ padding: "10px" }}
       >
-        <p>{printContentWithNewLine(footer[i].column1)}</p>
-        <p>{printContentWithNewLine(footer[i].column3)}</p>
-        <p>{printContentWithNewLine(footer[i].column4)}</p>
-        <p>{footer[i].column5.replace(/ /g, "\u00a0")}</p>
+        <div style={{ border: "2px solid #000", padding: "5px" }}>
+          <p>{printContentWithNewLine(footer[i].column1)}</p>
+          <p>{printContentWithNewLine(footer[i].column3)}</p>
+          <p>{printContentWithNewLine(footer[i].column4)}</p>
+          <p>{footer[i].column5.replace(/ /g, "\u00a0")}</p>
+        </div>
       </td>
     );
     i += 1;
@@ -277,30 +279,14 @@ export const renderDegree = footer => {
         <td
           key={(keyCount += 1).toString()}
           width="50%"
-          style={{ border: "2px solid #000", padding: "10px" }}
+          style={{ padding: "10px" }}
         >
-          <p
-            dangerouslySetInnerHTML={{
-              __html: (footer[i].column1 == undefined ? "" : footer[i].column1)
-                .replace(/ /g, "\u00a0")
-                .replace(/\|\|/g, "<br/>")
-            }}
-          />
-          <p
-            dangerouslySetInnerHTML={{
-              __html: (footer[i].column3 == undefined ? "" : footer[i].column3)
-                .replace(/ /g, "\u00a0")
-                .replace(/\|\|/g, "<br/>")
-            }}
-          />
-          <p
-            dangerouslySetInnerHTML={{
-              __html: (footer[i].column4 == undefined ? "" : footer[i].column4)
-                .replace(/ /g, "\u00a0")
-                .replace(/\|\|/g, "<br/>")
-            }}
-          />
-          <p>{footer[i].column5.replace(/ /g, "\u00a0")}</p>
+          <div style={{ border: "2px solid #000", padding: "5px" }}>
+            <p>{printContentWithNewLine(footer[i].column1)}</p>
+            <p>{printContentWithNewLine(footer[i].column3)}</p>
+            <p>{printContentWithNewLine(footer[i].column4)}</p>
+            <p>{footer[i].column5.replace(/ /g, "\u00a0")}</p>
+          </div>  
         </td>
       );
     }

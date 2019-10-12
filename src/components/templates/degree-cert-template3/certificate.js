@@ -105,7 +105,7 @@ const Template = ({ document }) => {
             style={{ width: "35%", paddingRight: "25px", lineHeight: "250px", paddingLeft: "110px" }}
           >
             <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
-              <img src={signature1} alt="" className="cert_sign" />
+              <img src={signature1} alt="" className="cert_sign" style={{ maxHeight: "120px" }} />
               <div style={{ padding: "5px" }}></div>
               <img src={signature3} alt="" className="cert_sign" />
             </span>

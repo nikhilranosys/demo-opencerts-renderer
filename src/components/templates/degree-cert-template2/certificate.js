@@ -93,7 +93,7 @@ const Template = ({ document }) => {
               style={{
                 fontSize: "22px",
                 fontWeight: "bold",
-                marginTop: "30px",
+                marginTop: "10px",
                 maxHeight: "250px"
               }}
             >
@@ -104,7 +104,7 @@ const Template = ({ document }) => {
               style={{
                 fontSize: "22px",
                 fontWeight: "bold",
-                marginTop: (index == -1 ? "100" : "48") + "px",
+                marginTop: (index == -1 ? "100" : "25") + "px",
                 maxHeight: "200px"
               }}
             >
@@ -117,9 +117,9 @@ const Template = ({ document }) => {
                 }}
               >
                 <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
-                  <img src={signature1} alt="" className="cert_sign" />
+                  <img src={signature1} alt="" className="cert_sign2" />
                   <div style={{ padding: "5px" }}></div>
-                  <img src={signature3} alt="" className="cert_sign" />
+                  <img src={signature3} alt="" className="cert_sign2" />
                 </span>
               </div>
               <div style={{ width: "20%", lineHeight: "200px" }}>
@@ -131,9 +131,9 @@ const Template = ({ document }) => {
                 style={{ width: "40%", paddingLeft: "25px", lineHeight: "200px", paddingRight: "150px" }}
               >
                 <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
-                  <img src={signature2} alt="" className="cert_sign" />
+                  <img src={signature2} alt="" className="cert_sign2" />
                   <div style={{ padding: "5px" }}></div>
-                  <img src={signature4} alt="" className="cert_sign" />
+                  <img src={signature4} alt="" className="cert_sign2" />
                 </span>
               </div>
             </div>
