@@ -131,7 +131,7 @@ export const renderTranscripts = transcript => {
                   {transcript[i].column1}
                 </td>
                 <td className="text-center">{transcript[i].column3}</td>
-                <td className="text-center">{transcript[i].column4}</td>
+                <td className="grade-padding">{transcript[i].column4}</td>
                 <td className="text-center">{transcript[i].column5}</td>
               </tr>
             );
@@ -197,7 +197,7 @@ export const renderTranscripts = transcript => {
             {transcript[i].name}
           </td>
           <td className="text-center">{transcript[i].overall}</td>
-          <td>{transcript[i].grade}</td>
+          <td className="grade-padding">{transcript[i].grade}</td>
           <td className="text-center">
             {transcript[i].score}
             <sup style={{ marginLeft: "5px", fontSize: "8px" }}>{transcript[i].superscript}</sup>
