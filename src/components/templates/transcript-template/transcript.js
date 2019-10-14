@@ -8,7 +8,7 @@ import "../common/style.scss";
 import "../common/print.scss";
 
 export const MAX_LINES = 42;
-export const TIMEZONE = "Asia/Singapore";
+export const TIMEZONE = "UTC";
 
 export const renderHeader = transcript => {
   const id = get(transcript, "additionalData.serialNumber");
@@ -181,7 +181,6 @@ export const renderTranscripts = transcript => {
           table.push(
             <tr key={(keyCount += 1).toString()}>
               <td colSpan={5}>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {transcript[i].column1.replace(/ /g, "\u00a0").replace(/\\/g, "\"")}
               </td>
             </tr>
@@ -198,7 +197,7 @@ export const renderTranscripts = transcript => {
             {transcript[i].name}
           </td>
           <td className="text-center">{transcript[i].overall}</td>
-          <td className="text-center">{transcript[i].grade}</td>
+          <td>{transcript[i].grade}</td>
           <td className="text-center">
             {transcript[i].score}
             <sup style={{ marginLeft: "5px", fontSize: "8px" }}>{transcript[i].superscript}</sup>

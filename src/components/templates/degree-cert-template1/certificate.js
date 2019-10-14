@@ -18,7 +18,7 @@ const Template = ({ document }) => {
   const honors = get(certificate, "additionalData.honors");
   const recipientName = get(certificate, "recipient.name");
   const attainmentDate = get(certificate, "attainmentDate");
-  const SerialNumber = get(certificate, "additionalData.SerialNumber");
+  const SerialNumber = get(certificate, "additionalData.serialNumber");
   const signature1 = get(certificate, "additionalData.Signature1");
   const signature2 = get(certificate, "additionalData.Signature2");
   const signature3 = get(certificate, "additionalData.Signature3");
@@ -135,8 +135,8 @@ const Template = ({ document }) => {
           style={{
             fontSize: "22px",
             fontWeight: "bold",
-            marginTop: "25px",
-            maxHeight: "200px"
+            marginTop: "5px",
+            maxHeight: "220px"
           }}
         >
           <div
