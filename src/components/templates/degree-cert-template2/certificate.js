@@ -104,7 +104,7 @@ const Template = ({ document }) => {
               style={{
                 fontSize: "22px",
                 fontWeight: "bold",
-                marginTop: (index == -1 ? "100" : "50") + "px",
+                marginTop: (index == -1 ? "130" : "75") + "px",
                 maxHeight: "200px"
               }}
             >
