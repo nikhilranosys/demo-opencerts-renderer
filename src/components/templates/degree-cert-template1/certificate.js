@@ -162,15 +162,7 @@ const Template = ({ document }) => {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          position: "absolute",
-          padding: "0 25px 5px",
-          right: "0",
-          bottom: "0",
-          fontSize: "8px"
-        }}
-      >
+      <div className="serial-number">
         {SerialNumber}
       </div>
     </div>
