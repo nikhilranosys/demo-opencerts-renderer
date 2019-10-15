@@ -118,7 +118,7 @@ const Template = ({ document }) => {
               >
                 <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
                   <img src={signature1} alt="" className="cert_sign2" />
-                  <div style={{ padding: "5px" }}></div>
+                  <div style={{ padding: (signature3 == undefined ? "0" : "5") + "px" }}></div>
                   <img src={signature3} alt="" className="cert_sign2" />
                 </span>
               </div>
@@ -132,7 +132,7 @@ const Template = ({ document }) => {
               >
                 <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
                   <img src={signature2} alt="" className="cert_sign22" />
-                  <div style={{ padding: "5px" }}></div>
+                  <div style={{ padding: (signature3 == undefined ? "0" : "5") + "px" }}></div>
                   <img src={signature4} alt="" className="cert_sign22" />
                 </span>
               </div>
