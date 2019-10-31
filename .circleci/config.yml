@@ -13,7 +13,7 @@ jobs:
           command: npm run lint
       - run:
           name: test
-          command: npm run test
+          command: npm run test -- --passWithNoTests
       - run:
           name: build
           command: npm run build

@@ -1,11 +1,11 @@
-import {format} from "date-fns";
-import {get} from "lodash";
-import React, {FunctionComponent} from "react";
-import {certificateBg} from "./common/backgrounds";
+import { format } from "date-fns";
+import { get } from "lodash";
+import React, { FunctionComponent } from "react";
+import { certificateBg } from "./common/backgrounds";
 import "bootstrap/dist/css/bootstrap.css";
 import "./common/demoStyles.css";
-import {TemplateProps} from "@govtechsg/decentralized-renderer-react-components";
-import {GovtechOpencertsTemplateCertificate} from "../samples";
+import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
+import { GovtechOpencertsTemplateCertificate } from "../samples";
 
 export const CertificateTemplate: FunctionComponent<TemplateProps<GovtechOpencertsTemplateCertificate>> = ({
   document

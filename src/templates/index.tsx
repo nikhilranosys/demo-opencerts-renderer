@@ -1,4 +1,4 @@
-import {templates as govtechDemoTemplates} from "./govtechDemoCert";
+import { templates as govtechDemoTemplates } from "./govtechDemoCert";
 import { TemplateRegistry } from "@govtechsg/decentralized-renderer-react-components";
 
 export const registry: TemplateRegistry<any> = {
