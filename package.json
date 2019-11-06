@@ -64,7 +64,7 @@
     "jest": "24.9.0",
     "prettier": "1.18.2",
     "react-docgen-typescript-loader": "3.3.0",
-    "semantic-release": "15.13.26",
+    "semantic-release": "15.13.30",
     "style-loader": "1.0.0",
     "typescript": "3.6.4",
     "webpack": "4.41.2",
