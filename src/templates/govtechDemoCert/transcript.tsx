@@ -71,7 +71,7 @@ export const TranscriptTemplate: FunctionComponent<TemplateProps<GovtechOpencert
 
   return (
     <div className="container">
-      <SimplePrivacyFilterBanner onToggleEditable={() => setEditable(!editable)} />
+      <SimplePrivacyFilterBanner onToggleEditable={() => setEditable(!editable)} className="privacy-banner"/>
       <div
         className="p-2 container"
         style={{
