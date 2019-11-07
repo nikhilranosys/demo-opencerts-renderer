@@ -70,7 +70,7 @@ const Template = ({ document }) => {
 
   return (
     <div
-      className="transcript"
+      className="transcript myfont"
       style={{
         width: "1097px",
         margin: "auto",
