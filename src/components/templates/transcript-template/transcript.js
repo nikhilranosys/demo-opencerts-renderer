@@ -17,6 +17,9 @@ export const renderHeader = transcript => {
   const studentId = get(transcript, "recipient.studentId");
   const doEnrolment = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMM YYYY");
   const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMM YYYY");
+  const admissionDate = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMM YYYY");
+  const graduationDate = tz(new Date(get(transcript, "graduationDate")), TIMEZONE).format("DD MMM YYYY");
+  const program = get(transcript, "name");
 
   return (
     <table width="100%">
@@ -24,13 +27,13 @@ export const renderHeader = transcript => {
         <tr>
           <td width="75%">
             <p>Name: {name}</p>
-            <p>Date of Enrolment: {doEnrolment}</p>
-            <p>Date of Birth: {dob}</p>
+            <p>{id === undefined ? "Date of Birth" : "Date of Enrolment"}: {id === undefined ? dob : doEnrolment}</p>
+            <p>{id === undefined ? "Program" : "Date of Birth"}: {id === undefined ? program + " (" + admissionDate + " to " + graduationDate + ")" : dob}</p>
           </td>
           <td width="25%" style={{ padding: "5px 15px" }}>
             <p>Student ID No: {studentId}</p>
             <p>Date of Issue: {doIssue.toString()}</p>
-            <p>Serial Number: {id}</p>
+            <p>{id === undefined ? "" : "Serial Number:" + id}</p>
           </td>
         </tr>
       </tbody>
@@ -67,7 +70,7 @@ export const renderTranscripts = transcript => {
   let processedLines = 0;
   for (let i = current; i < transcript.length; i += 1) {
 
-    if(transcript[i].name == "Render Format")
+    if(transcript[i].name === "Render Format")
     {
       if (transcript[i].bold === "true") {
         tLines = getTranscriptLines(transcript, current);
@@ -132,7 +135,7 @@ export const renderTranscripts = transcript => {
                 </td>
                 <td className="text-center">{transcript[i].column3}</td>
                 <td className="grade-padding">{transcript[i].column4}</td>
-                <td className="text-center">{transcript[i].column5}</td>
+                <td className="points-padding">{transcript[i].column5}</td>
               </tr>
             );
           }
@@ -144,8 +147,8 @@ export const renderTranscripts = transcript => {
                   {transcript[i].column1}
                 </td>
                 <td className="text-center">{transcript[i].column3}</td>
-                <td className="text-center">{transcript[i].column4}</td>
-                <td className="text-center">{transcript[i].column5}</td>
+                <td className="grade-padding">{transcript[i].column4}</td>
+                <td className="points-padding">{transcript[i].column5}</td>
               </tr>
             );
           }
@@ -198,7 +201,7 @@ export const renderTranscripts = transcript => {
           </td>
           <td className="text-center">{transcript[i].overall}</td>
           <td className="grade-padding">{transcript[i].grade}</td>
-          <td className="text-center">
+          <td className="points-padding">
             {transcript[i].score}
             <sup style={{ marginLeft: "5px", fontSize: "8px" }}>{transcript[i].superscript}</sup>
           </td>
@@ -232,7 +235,7 @@ export const printContentWithNewLine = content => {
   
   let result = [];
 
-  if(content != undefined)
+  if(content !== undefined)
   {
     content = content.replace(/ /g, "\u00a0");
 
@@ -244,7 +247,7 @@ export const printContentWithNewLine = content => {
         lines[i]
       );
 
-      if(i != lines.length - 1)
+      if(i !== lines.length - 1)
       {
         result.push(<br/>);
       }
@@ -438,7 +441,7 @@ const Template = ({ document }) => {
                 <hr style={{ border: "1px solid black" }} />
               </td>
               <td width="20%">
-                {currentPage === pageCount ? "End of Transcript" : "Continue"}
+                {currentPage === pageCount ? "End of Transcript" : "Continued"}
               </td>
               <td width="20%">
                 <hr style={{ border: "1px solid black" }} />
