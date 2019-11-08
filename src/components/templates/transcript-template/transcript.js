@@ -18,7 +18,7 @@ export const renderHeader = transcript => {
   const doEnrolment = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMM YYYY");
   const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMM YYYY");
   const admissionDate = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMM YYYY");
-  const graduationDate = tz(new Date(get(transcript, "graduationDate")), TIMEZONE).format("DD MMM YYYY");
+  const graduationDate = tz(new Date(get(transcript, "attainmentDate")), TIMEZONE).format("DD MMM YYYY");
   const program = get(transcript, "name");
 
   return (
