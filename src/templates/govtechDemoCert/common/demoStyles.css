@@ -1,0 +1,121 @@
+body {
+  background: white;
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: 1.5;
+  margin: 0px;
+}
+
+.root {
+  font: "Source Sans Pro", sans-serif;
+  --font-monospace: "Source Sans Pro", sans-serif;
+  --font-monospace-size: 0.8rem !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+.privacy-banner {
+  margin-bottom: 20px;
+}
+
+.cert-body {
+  font-size: 16px;
+}
+
+@media (max-width: 200px) {
+  .cert-body {
+    font-size: 10px;
+  }
+}
+@media (min-width: 599px) {
+  .cert-body {
+    font-size: 14px;
+  }
+}
+@media (min-width: 600px) {
+  .cert-body {
+    font-size: 18px;
+  }
+}
+@media (min-width: 900px) {
+  .cert-body {
+    font-size: 22px;
+  }
+}
+@media (min-width: 1200px) {
+  .cert-body {
+    font-size: 26px;
+  }
+}
+@media (min-width: 1800px) {
+  .cert-body {
+    font-size: 30px;
+  }
+}
+
+.cert-title {
+  font-size: 24px;
+}
+@media (max-width: 200px) {
+  .cert-title {
+    font-size: 18px;
+  }
+}
+@media (min-width: 599px) {
+  .cert-title {
+    font-size: 22px;
+  }
+}
+@media (min-width: 600px) {
+  .cert-title {
+    font-size: 26px;
+  }
+}
+@media (min-width: 900px) {
+  .cert-title {
+    font-size: 30px;
+  }
+}
+@media (min-width: 1200px) {
+  .cert-title {
+    font-size: 34px;
+  }
+}
+@media (min-width: 1800px) {
+  .cert-title {
+    font-size: 38px;
+  }
+}
+
+.transcript {
+  font-size: 8px;
+}
+
+@media (max-width: 200px) {
+  .transcript {
+    font-size: 6px;
+  }
+}
+@media (min-width: 599px) {
+  .transcript {
+    font-size: 8px;
+  }
+}
+@media (min-width: 600px) {
+  .transcript {
+    font-size: 16px;
+  }
+}
+@media (min-width: 900px) {
+  .transcript {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .transcript {
+    font-size: 24px;
+  }
+}
+@media (min-width: 1800px) {
+  .transcript {
+    font-size: 28px;
+  }
+}
