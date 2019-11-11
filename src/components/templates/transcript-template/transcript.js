@@ -363,18 +363,14 @@ const Template = ({ document }) => {
     parent.push(
       <div
         key={(keyCount += 1).toString()}
-        className="transcript"
+        className="transcript transcript-page"
         style={{
-          width: "1000px",
           margin: "auto",
           backgroundRepeat: "no-repeat",
           backgroundImage: `url('${TRANS_BKG_IMG}')`,
-          pageBreakAfter: "always",
-          marginTop: "60px",
           padding: "40px 30px",
           backgroundSize: "cover",
           backgroundPosition: "canter center",
-          height: "1395px",
           position: "relative"
         }}
       >

@@ -2,6 +2,13 @@
     font-family: serif !important;
 }
 
+.transcript-page {
+    width: 1050px;
+    height: 1465px;
+    margin-top: 40px !important;
+    page-break-after: always;
+}
+
 table 
 { 
     table-layout: fixed !important; 
