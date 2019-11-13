@@ -19,15 +19,17 @@ export const renderHeader = transcript => {
   const doIssue = tz(new Date(get(transcript, "issuedOn")), TIMEZONE).format("DD MMM YYYY");
   const admissionDate = tz(new Date(get(transcript, "admissionDate")), TIMEZONE).format("DD MMM YYYY");
   const graduationDate = tz(new Date(get(transcript, "attainmentDate")), TIMEZONE).format("DD MMM YYYY");
+  const readmit = get(transcript, "additionalData.readmitDate");
+  const readmitDate = tz(new Date(readmit), TIMEZONE).format("DD MMM YYYY");
   const program = get(transcript, "name");
-
+debugger;
   return (
     <table width="100%">
       <tbody>
         <tr>
           <td width="75%">
             <p>Name: {name}</p>
-            <p>{id === undefined ? "Date of Birth" : "Date of Enrolment"}: {id === undefined ? dob : doEnrolment}</p>
+            <p>{id === undefined ? "Date of Birth" : "Date of Enrolment"}: {id === undefined ? dob : doEnrolment + (readmit === undefined ? "" : " (re-admitted on: " + readmitDate + ")" )}</p>
             <p>{id === undefined ? "Program" : "Date of Birth"}: {id === undefined ? program + " (" + admissionDate + " to " + graduationDate + ")" : dob}</p>
           </td>
           <td width="25%" style={{ padding: "5px 15px" }}>
