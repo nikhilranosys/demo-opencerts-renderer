@@ -21,8 +21,31 @@ export const renderHeader = transcript => {
   const graduationDate = tz(new Date(get(transcript, "attainmentDate")), TIMEZONE).format("DD MMM YYYY");
   const readmit = get(transcript, "additionalData.readmitDate");
   const readmitDate = tz(new Date(readmit), TIMEZONE).format("DD MMM YYYY");
-  const program = get(transcript, "name");
-debugger;
+  const programme = get(transcript, "name");
+  const programmes = get(transcript, "additionalData.Programmes");
+  
+  let td_programme  = "";
+  let pdob = "";
+  let pid = "";
+  if(id === undefined) {
+    let pString = "Programme: ";
+
+    pString += programme + " (" + admissionDate + " to " + graduationDate + ")";
+
+    if(programmes !== undefined)
+    {
+      programmes.forEach(p => {
+        pString += "; " + p.programmeName + " (" + tz(new Date(p.startDate), TIMEZONE).format("DD MMM YYYY") + " to " + tz(new Date(p.endDate), TIMEZONE).format("DD MMM YYYY") + ")";
+      });
+    }
+
+    td_programme = (<tr><td colSpan="2"><p>{pString}</p></td></tr>);
+  }
+  else {
+    pdob = (<p>Date of Birth: {dob}</p>);
+    pid = (<p>Serial Number: {id}</p>);
+  }
+
   return (
     <table width="100%">
       <tbody>
@@ -30,14 +53,15 @@ debugger;
           <td width="75%">
             <p>Name: {name}</p>
             <p>{id === undefined ? "Date of Birth" : "Date of Enrolment"}: {id === undefined ? dob : doEnrolment + (readmit === undefined ? "" : " (re-admitted on: " + readmitDate + ")" )}</p>
-            <p>{id === undefined ? "Program" : "Date of Birth"}: {id === undefined ? program + " (" + admissionDate + " to " + graduationDate + ")" : dob}</p>
+            {pdob}
           </td>
-          <td width="25%" style={{ padding: "5px 15px" }}>
+          <td width="25%" style={{ padding: "0px 15px" }}>
             <p>Student ID No: {studentId}</p>
             <p>Date of Issue: {doIssue.toString()}</p>
-            <p>{id === undefined ? "" : "Serial Number:" + id}</p>
+            {pid}
           </td>
         </tr>
+        {td_programme}
       </tbody>
     </table>
   );
