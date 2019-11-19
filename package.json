@@ -23,7 +23,7 @@
     "dev": "NODE_ENV=development webpack-dev-server",
     "lint": "eslint . --ext .ts,.tsx,.mdx --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
-    "storybook": "start-storybook -p 6006 -s ./static",
+    "storybook": "start-storybook -p 6006 -s .",
     "storybook:build": "build-storybook -o docs",
     "test": "jest --ci",
     "test:coverage": "npm run test -- --coverage",
