@@ -22,7 +22,7 @@ export const renderHeader = transcript => {
   const readmit = get(transcript, "additionalData.readmitDate");
   const readmitDate = tz(new Date(readmit), TIMEZONE).format("DD MMM YYYY");
   const programme = get(transcript, "name");
-  const programmes = get(transcript, "additionalData.Programmes");
+  const programmes = get(transcript, "additionalData.additionalProgram");
   
   let td_programme  = "";
   let pdob = "";
