@@ -10,6 +10,7 @@ import {
   TemplateProps
 } from "@govtechsg/decentralized-renderer-react-components";
 import { GovtechOpencertsTemplateCertificate } from "../samples";
+import { PrintWatermark } from "./common/PrintWatermark";
 
 export const TranscriptTemplate: FunctionComponent<TemplateProps<GovtechOpencertsTemplateCertificate>> = ({
   document,
@@ -70,143 +71,146 @@ export const TranscriptTemplate: FunctionComponent<TemplateProps<GovtechOpencert
   ));
 
   return (
-    <div className="container">
-      <SimplePrivacyFilterBanner onToggleEditable={() => setEditable(!editable)} className="privacy-banner" />
-      <div
-        className="p-2 container"
-        style={{
-          backgroundImage: `url('${transcriptBg}')`,
-          backgroundRepeat: "repeat"
-        }}
-      >
-        <div className="row root cert-title" style={{ paddingLeft: "3%" }}>
-          <b>{documentName}</b>
-        </div>
-
+    <>
+      <PrintWatermark />
+      <div className="container">
+        <SimplePrivacyFilterBanner onToggleEditable={() => setEditable(!editable)} className="privacy-banner" />
         <div
-          className="row transcript"
+          className="p-2 container"
           style={{
-            paddingTop: "3%",
-            paddingLeft: "2%"
+            backgroundImage: `url('${transcriptBg}')`,
+            backgroundRepeat: "repeat"
           }}
         >
-          <div className="col">
-            <div className="row">
-              <div className="col">NAME</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {recipientName}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">COURSE</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {recipientCourse}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">NRIC/FIN</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {recipientNric}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">STUDENT ID</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {studentId}
-              </div>
-            </div>
+          <div className="row root cert-title" style={{ paddingLeft: "3%" }}>
+            <b>{documentName}</b>
           </div>
-          <div className="col">
-            <div className="row">
-              <div className="col">DOCUMENT ID</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {documentId}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">DATE OF ISSUANCE</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {formatDate(issuanceDate)}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">DATE OF ADMISSION</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {formatDate(admissionDate)}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">DATE OF GRADUATION</div>
-              <div className="col">
-                :&nbsp;&nbsp;
-                {formatDate(graduationDate)}
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {transcriptData !== [] && (
-          <div className="row mb-4" style={{ paddingLeft: "3%", paddingTop: "5%" }}>
-            <div className="root cert-title">
-              <b>Transcript</b>
+          <div
+            className="row transcript"
+            style={{
+              paddingTop: "3%",
+              paddingLeft: "2%"
+            }}
+          >
+            <div className="col">
+              <div className="row">
+                <div className="col">NAME</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {recipientName}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">COURSE</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {recipientCourse}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">NRIC/FIN</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {recipientNric}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">STUDENT ID</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {studentId}
+                </div>
+              </div>
             </div>
-            <table className="w-100 transcript">
-              <tbody>
-                <tr>
-                  <th>Course Code</th>
-                  <th>Name</th>
-                  <th>Grade</th>
-                  <th>Units</th>
-                  <th>Semester</th>
-                </tr>
-                {transcriptSection}
-              </tbody>
-            </table>
+            <div className="col">
+              <div className="row">
+                <div className="col">DOCUMENT ID</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {documentId}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">DATE OF ISSUANCE</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {formatDate(issuanceDate)}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">DATE OF ADMISSION</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {formatDate(admissionDate)}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">DATE OF GRADUATION</div>
+                <div className="col">
+                  :&nbsp;&nbsp;
+                  {formatDate(graduationDate)}
+                </div>
+              </div>
+            </div>
           </div>
-        )}
 
-        <div className="row">
-          <div className="col">
-            <img
-              className="w-100"
+          {transcriptData !== [] && (
+            <div className="row mb-4" style={{ paddingLeft: "3%", paddingTop: "5%" }}>
+              <div className="root cert-title">
+                <b>Transcript</b>
+              </div>
+              <table className="w-100 transcript">
+                <tbody>
+                  <tr>
+                    <th>Course Code</th>
+                    <th>Name</th>
+                    <th>Grade</th>
+                    <th>Units</th>
+                    <th>Semester</th>
+                  </tr>
+                  {transcriptSection}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          <div className="row">
+            <div className="col">
+              <img
+                className="w-100"
+                style={{
+                  paddingTop: "40%",
+                  paddingLeft: "3%",
+                  width: "100%",
+                  height: "auto"
+                }}
+                src={require("./common/GOVTECH_logo.png")}
+                alt="Govtech Logo"
+              />
+            </div>
+            <div className="col" />
+            <div
+              className="col text-center"
               style={{
-                paddingTop: "40%",
-                paddingLeft: "3%",
+                paddingTop: "5%",
+                paddingRight: "5%",
                 width: "100%",
                 height: "auto"
               }}
-              src={require("./common/GOVTECH_logo.png")}
-              alt="Govtech Logo"
-            />
-          </div>
-          <div className="col" />
-          <div
-            className="col text-center"
-            style={{
-              paddingTop: "5%",
-              paddingRight: "5%",
-              width: "100%",
-              height: "auto"
-            }}
-          >
-            <img className="w-100" src={get(document, "additionalData.certSignatories[0].signature")} />
-            <hr className="m-1" />
-            <div className="transcript">
-              <b>{get(document, "additionalData.certSignatories[0].name")}</b>
-              <br />
-              {get(document, "additionalData.certSignatories[0].position")},{" "}
-              {get(document, "additionalData.certSignatories[0].organisation")}
+            >
+              <img className="w-100" src={get(document, "additionalData.certSignatories[0].signature")} />
+              <hr className="m-1" />
+              <div className="transcript">
+                <b>{get(document, "additionalData.certSignatories[0].name")}</b>
+                <br />
+                {get(document, "additionalData.certSignatories[0].position")},{" "}
+                {get(document, "additionalData.certSignatories[0].organisation")}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
