@@ -7,7 +7,8 @@ import "./common/demoStyles.css";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
 import { GovtechOpencertsTemplateCertificate } from "../samples";
 import { PrintWatermark } from "./common/PrintWatermark";
-import logo from "./common/opencertslogo.svg";
+import mainLogo from "./common/opencertslogo.svg";
+import logo from "./common/GOVTECH_logo.png";
 
 export const CertificateTemplate: FunctionComponent<TemplateProps<GovtechOpencertsTemplateCertificate>> = ({
   document
@@ -30,7 +31,7 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<GovtechOpencer
         }}
       >
         <div className="my-5 m-lg-5 text-center">
-          <img src={logo} alt="OpenCerts Logo" style={{ width: "60%", height: "auto", maxWidth: "1000px" }} />
+          <img src={mainLogo} alt="OpenCerts Logo" style={{ width: "60%", height: "auto", maxWidth: "1000px" }} />
         </div>
         <div className="mb-4 mb-lg-5 d-flex justify-content-center cert-body" style={{ textAlign: "center" }}>
           <i>This is to certify that</i>
@@ -53,7 +54,7 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<GovtechOpencer
             <img
               className="w-100"
               style={{ width: "100%", height: "auto", minWidth: "100px" }}
-              src={require("./common/GOVTECH_logo.png")}
+              src={logo}
               alt="Govtech Logo"
             />
           </div>
