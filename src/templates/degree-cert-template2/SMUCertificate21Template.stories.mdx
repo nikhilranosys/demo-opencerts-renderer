@@ -1,0 +1,21 @@
+import { Meta, Preview, Props, Description, Story } from "@storybook/addon-docs/blocks";
+import { CertificateTemplate } from "./certificate";
+import { customTemplateCertificate21 } from "../SMUSamples";
+
+<Meta title="SMU|Certificate21Template" component={CertificateTemplate} />
+
+# CertificateTemplate component
+
+<Description of={CertificateTemplate} />
+
+# Props
+
+<Props of={CertificateTemplate} />
+
+# Usage
+
+<Preview withSource>
+  <Story name="Certificate 21">
+    <CertificateTemplate document={customTemplateCertificate21} />
+  </Story>
+</Preview>

@@ -1,0 +1,120 @@
+.myfont * {
+    font-family: serif !important;
+}
+
+.transcript-page {
+    width: 1050px;
+    height: 1465px;
+    margin-top: 40px !important;
+    page-break-after: always;
+}
+
+table 
+{ 
+    table-layout: fixed !important; 
+    margin: 0 auto; 
+    font-size: 12px;
+    font-family: sans-serif; 
+} 
+img 
+{ 
+    -ms-interpolation-mode:bicubic; 
+} 
+p
+{ 
+    color: #000;
+    margin: 0 !important;
+    font-family: sans-serif; 
+    line-height: 1.25!important;
+    font-size: 12px !important; 
+} 
+strong
+{
+    color:#000000;
+} 
+th
+{
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding:5px 0;
+    text-transform: capitalize;
+}
+
+.transcript_seal_sign {
+    position: absolute;
+    bottom: 90px;
+    right: 50px;
+}
+
+.transcript_seal_sign img {
+    max-width: 250px;
+    max-height: 200px;
+}
+
+.cert_sign {
+    max-width: 250px;
+    max-height: 100px;
+}
+
+.cert_seal {
+    max-width: 165px;
+    max-height: 165px;
+}
+
+.cert_seal2 {
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.cert_sign2 {
+    max-width: 300px;
+    max-height: 125px;
+}
+
+.cert_sign22 {
+    max-width: 335px;
+    max-height: 140px;
+}
+
+.cert_sign11 {
+    max-height: 85px;
+}
+
+.cert_sign12 {
+    max-height: 110px;
+}
+
+.heading-panel-text{
+    width: 100%;
+    height: 115px;
+    display: table;
+}
+.degree-text{
+    text-align: center;
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.honors-text{
+    text-align: center;
+    width: 100%;
+}
+
+.grade-padding
+{
+    padding-left: 35px;
+}
+
+.points-padding
+{
+    padding-left: 50px;
+}
+
+.serial-number
+{
+    position: absolute;
+    padding: 0 25px 5px;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+}
