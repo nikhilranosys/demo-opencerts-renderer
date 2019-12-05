@@ -11,5 +11,5 @@ export const registry: TemplateRegistry<any> = {
   SMUCertificate1: SMUCertificate1,
   SMUCertificate2: SMUCertificate2,
   SMUCertificate3: SMUCertificate3,
-  SMUTranscript: SMUTranscript,
+  SMUTranscript: SMUTranscript
 };

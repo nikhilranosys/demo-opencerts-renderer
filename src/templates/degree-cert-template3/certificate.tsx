@@ -14,7 +14,7 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
   document
 }) => {
   const certificate = document;
-  
+
   // Declaring what variables will be available to the template from the certificate
   const certificateName = get(certificate, "name");
   const honors = get(certificate, "additionalData.honors");
@@ -72,19 +72,30 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
               color: "#9c9062"
             }}
           >
-            <div className="heading-panel-text" style={{
+            <div
+              className="heading-panel-text"
+              style={{
                 fontSize: degreeFontSize + "px"
-              }}>
-              <div className="degree-text" style={{textAlign: "center",width: "100%"}}>
+              }}
+            >
+              <div className="degree-text" style={{ textAlign: "center", width: "100%" }}>
                 {certificateName}
-                <div className="honors-text" style={{textAlign: "center",width: "100%",
-                  fontSize: "30px",
-                  fontWeight: "bold",
-                  color: "#9c9062",
-                  marginTop: "10px",
-                  textTransform: "none"}}>{honors}</div>
-              </div>              
-            </div> 
+                <div
+                  className="honors-text"
+                  style={{
+                    textAlign: "center",
+                    width: "100%",
+                    fontSize: "30px",
+                    fontWeight: "bold",
+                    color: "#9c9062",
+                    marginTop: "10px",
+                    textTransform: "none"
+                  }}
+                >
+                  {honors}
+                </div>
+              </div>
+            </div>
           </div>
           <div
             className="row"
@@ -105,33 +116,29 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
               maxHeight: "250px"
             }}
           >
-            <div
-              style={{ width: "35%", paddingRight: "25px", lineHeight: "250px", paddingLeft: "110px" }}
-            >
-              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+            <div style={{ width: "35%", paddingRight: "25px", lineHeight: "250px", paddingLeft: "110px" }}>
+              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5" }}>
                 <img src={signature1} alt="" className="cert_sign" style={{ maxHeight: "115px" }} />
-                <div style={{ padding: "5px" }}></div>
+                <div style={{ padding: "5px" }} />
                 <img src={signature3} alt="" className="cert_sign" />
               </span>
             </div>
             <div style={{ width: "30%", lineHeight: "250px" }}>
-              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5" }}>
                 <img src={seal} alt="" className="cert_seal" style={{ marginRight: "25px" }} />
-                <img src={seal2} alt=""  className="cert_seal" style={{ marginLeft: "25px" }} />
+                <img src={seal2} alt="" className="cert_seal" style={{ marginLeft: "25px" }} />
               </span>
             </div>
             <div style={{ width: "35%", paddingLeft: "25px", lineHeight: "250px", paddingRight: "110px" }}>
-              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5" }}>
                 <img src={signature2} alt="" className="cert_sign" />
-                <div style={{ padding: "5px" }}></div>
+                <div style={{ padding: "5px" }} />
                 <img src={signature4} alt="" className="cert_sign" />
               </span>
             </div>
           </div>
         </div>
-        <div className="serial-number">
-          {SerialNumber}
-        </div>
+        <div className="serial-number">{SerialNumber}</div>
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { get } from "lodash";
 import React, { FunctionComponent } from "react";
 import { TemplateProps } from "@govtechsg/decentralized-renderer-react-components";
-import { SMUOpencertsTemplateTranscript } from "../SMUSamples";
+
 import { PrintWatermark } from "../common/PrintWatermark";
 
 import { TRANS_BKG_IMG, TRANS_BACK_IMG } from "../common/images";
@@ -12,7 +12,7 @@ import "../common/print.css";
 export const MAX_LINES = 42;
 export const TIMEZONE = "UTC";
 
-export const renderHeader = (transcript: any) => {
+export const renderHeader: any = (transcript: any) => {
   const id = get(transcript, "additionalData.serialNumber");
   const name = get(transcript, "recipient.name");
   const dob = get(transcript, "recipient.birthDate");
@@ -25,27 +25,38 @@ export const renderHeader = (transcript: any) => {
   const readmitDate = format(readmit, "DD MMM YYYY");
   const programme = get(transcript, "name");
   const programmes = get(transcript, "additionalData.additionalProgram");
-  
-  let td_programme  = null;
+
+  let tdProgramme = null;
   let pdob = null;
   let pid = null;
-  if(id === undefined) {
+  if (id === undefined) {
     let pString = "Programme: ";
 
     pString += programme + " (" + admissionDate + " to " + graduationDate + ")";
 
-    if(programmes !== undefined)
-    {
+    if (programmes !== undefined) {
       programmes.forEach((p: any) => {
-        pString += "; " + p.programmeName + " (" + format(p.startDate, "DD MMM YYYY") + " to " + format(p.endDate, "DD MMM YYYY") + ")";
+        pString +=
+          "; " +
+          p.programmeName +
+          " (" +
+          format(p.startDate, "DD MMM YYYY") +
+          " to " +
+          format(p.endDate, "DD MMM YYYY") +
+          ")";
       });
     }
 
-    td_programme = (<tr><td colSpan={2}><p>{pString}</p></td></tr>);
-  }
-  else {
-    pdob = (<p>Date of Birth: {dob}</p>);
-    pid = (<p>Serial Number: {id}</p>);
+    tdProgramme = (
+      <tr>
+        <td colSpan={2}>
+          <p>{pString}</p>
+        </td>
+      </tr>
+    );
+  } else {
+    pdob = <p>Date of Birth: {dob}</p>;
+    pid = <p>Serial Number: {id}</p>;
   }
 
   return (
@@ -54,7 +65,12 @@ export const renderHeader = (transcript: any) => {
         <tr>
           <td style={{ width: "75%" }}>
             <p>Name: {name}</p>
-            <p>{id === undefined ? "Date of Birth" : "Date of Enrolment"}: {id === undefined ? dob : doEnrolment + (readmit === undefined ? "" : " (re-admitted on: " + readmitDate + ")" )}</p>
+            <p>
+              {id === undefined ? "Date of Birth" : "Date of Enrolment"}:{" "}
+              {id === undefined
+                ? dob
+                : doEnrolment + (readmit === undefined ? "" : " (re-admitted on: " + readmitDate + ")")}
+            </p>
             {pdob}
           </td>
           <td style={{ padding: "0px 15px", width: "25%" }}>
@@ -63,7 +79,7 @@ export const renderHeader = (transcript: any) => {
             {pid}
           </td>
         </tr>
-        {td_programme}
+        {tdProgramme}
       </tbody>
     </table>
   );
@@ -73,7 +89,7 @@ let current = 0;
 let currentPage = 0;
 let keyCount = 1;
 
-export const getTranscriptLines = (t : any, lCurrent: number) => {
+export const getTranscriptLines: any = (t: any, lCurrent: number) => {
   // 1 line for blank line and title
   let lines = 1;
 
@@ -92,14 +108,12 @@ export const getTranscriptLines = (t : any, lCurrent: number) => {
   return lines;
 };
 
-export const renderTranscripts = (transcript: any) => {
+export const renderTranscripts: any = (transcript: any) => {
   const table = [];
   let tLines = 0;
   let processedLines = 0;
   for (let i = current; i < transcript.length; i += 1) {
-
-    if(transcript[i].name === "Render Format")
-    {
+    if (transcript[i].name === "Render Format") {
       if (transcript[i].bold === "true") {
         tLines = getTranscriptLines(transcript, current);
 
@@ -137,24 +151,20 @@ export const renderTranscripts = (transcript: any) => {
           );
         } else {
           if (transcript[i].tabs === 0) {
-            if(transcript[i].column1 === undefined)
-            {
+            if (transcript[i].column1 === undefined) {
               table.push(
                 <tr key={(keyCount += 1).toString()}>
                   <td colSpan={5}>&nbsp;</td>
                 </tr>
               );
-            }
-            else
-            {
+            } else {
               table.push(
                 <tr key={(keyCount += 1).toString()}>
                   <td colSpan={5}>{transcript[i].column1}</td>
                 </tr>
               );
             }
-          } 
-          else if (transcript[i].tabs === 1) {
+          } else if (transcript[i].tabs === 1) {
             table.push(
               <tr key={(keyCount += 1).toString()}>
                 <td colSpan={2}>
@@ -166,8 +176,7 @@ export const renderTranscripts = (transcript: any) => {
                 <td className="points-padding">{transcript[i].column5}</td>
               </tr>
             );
-          }
-          else if (transcript[i].tabs === 2) {
+          } else if (transcript[i].tabs === 2) {
             table.push(
               <tr key={(keyCount += 1).toString()}>
                 <td colSpan={2}>
@@ -203,24 +212,19 @@ export const renderTranscripts = (transcript: any) => {
             <tr key={(keyCount += 1).toString()}>
               <td colSpan={5}>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {transcript[i].column1.replace(/ /g, "\u00a0").replace(/\\/g, "\"")}
+                {transcript[i].column1.replace(/ /g, "\u00a0").replace(/\\/g, '"')}
               </td>
             </tr>
           );
-        }
-        else {
+        } else {
           table.push(
             <tr key={(keyCount += 1).toString()}>
-              <td colSpan={5}>
-                {transcript[i].column1.replace(/ /g, "\u00a0").replace(/\\/g, "\"")}
-              </td>
+              <td colSpan={5}>{transcript[i].column1.replace(/ /g, "\u00a0").replace(/\\/g, '"')}</td>
             </tr>
           );
         }
       }
-    }
-    else
-    {
+    } else {
       table.push(
         <tr key={(keyCount += 1).toString()}>
           <td colSpan={2}>
@@ -259,40 +263,31 @@ export const renderTranscripts = (transcript: any) => {
   );
 };
 
-export const printContentWithNewLine = (content: any) => {
-  
-  let result = [];
+export const printContentWithNewLine: any = (content: any) => {
+  const result = [];
 
-  if(content !== undefined)
-  {
+  if (content !== undefined) {
     content = content.replace(/ /g, "\u00a0");
 
-    let lines = content.split(/\|\|/g);
+    const lines = content.split(/\|\|/g);
 
-    for(let i = 0; i < lines.length; i++)
-    {
-      result.push(
-        lines[i]
-      );
+    for (let i = 0; i < lines.length; i++) {
+      result.push(lines[i]);
 
-      if(i !== lines.length - 1)
-      {
-        result.push(<br/>);
+      if (i !== lines.length - 1) {
+        result.push(<br />);
       }
     }
   }
   return result;
-}
+};
 
-export const renderDegree = (footer: any) => {
+export const renderDegree: any = (footer: any) => {
   const degree = [];
   for (let i = 0; i < footer.length; i += 1) {
     const col = [];
     col.push(
-      <td
-        key={(keyCount += 1).toString()}
-        style={{ padding: "10px", width: "50%" }}
-      >
+      <td key={(keyCount += 1).toString()} style={{ padding: "10px", width: "50%" }}>
         <div style={{ border: "2px solid #000", padding: "5px" }}>
           <p>{printContentWithNewLine(footer[i].column1)}</p>
           <p>{printContentWithNewLine(footer[i].column3)}</p>
@@ -305,26 +300,19 @@ export const renderDegree = (footer: any) => {
 
     if (i < footer.length) {
       col.push(
-        <td
-          key={(keyCount += 1).toString()}
-          style={{ padding: "10px", width: "50%" }}
-        >
+        <td key={(keyCount += 1).toString()} style={{ padding: "10px", width: "50%" }}>
           <div style={{ border: "2px solid #000", padding: "5px" }}>
             <p>{printContentWithNewLine(footer[i].column1)}</p>
             <p>{printContentWithNewLine(footer[i].column3)}</p>
             <p>{printContentWithNewLine(footer[i].column4)}</p>
             <p>{footer[i].column5.replace(/ /g, "\u00a0")}</p>
-          </div>  
+          </div>
         </td>
       );
     }
 
     degree.push(
-      <table
-        key={(keyCount += 1).toString()}
-        cellSpacing={10}
-        style={{ width: col.length === 1 ? "50%" : "100%" }}
-      >
+      <table key={(keyCount += 1).toString()} cellSpacing={10} style={{ width: col.length === 1 ? "50%" : "100%" }}>
         <tbody>
           <tr>{col}</tr>
         </tbody>
@@ -335,7 +323,7 @@ export const renderDegree = (footer: any) => {
   return degree;
 };
 
-export const renderFooterContent = (certificate: any) => {
+export const renderFooterContent: any = (certificate: any) => {
   const footerContent = [];
   if (current >= certificate.transcript.length - 1) {
     const footer = certificate.transcript.filter((t: any) => t.type === 3);
@@ -352,7 +340,7 @@ export const renderFooterContent = (certificate: any) => {
   return footerContent;
 };
 
-export const getTotalPages = (transcript: any) => {
+export const getTotalPages: any = (transcript: any) => {
   let lTotalPages = 1;
   let lProcessedLines = 0;
 
@@ -375,18 +363,16 @@ export const getTotalPages = (transcript: any) => {
   return lTotalPages;
 };
 
-export const TrnascriptTemplate: FunctionComponent<TemplateProps<SMUOpencertsTemplateTranscript>> = ({
-  document
-}) => {
+export const TrnascriptTemplate: FunctionComponent<TemplateProps<any>> = ({ document }) => {
   const certificate = document;
-  
+
   current = 0;
   currentPage = 0;
   keyCount = 1;
   const parent = [];
 
   const pageCount = getTotalPages(certificate.transcript);
-  
+
   while (current < certificate.transcript.length - 1) {
     parent.push(
       <div
@@ -402,16 +388,10 @@ export const TrnascriptTemplate: FunctionComponent<TemplateProps<SMUOpencertsTem
           position: "relative"
         }}
       >
-        <table
-          cellSpacing={0}
-          cellPadding={0}
-          style={{ margin: "auto", border: "0" }}
-        >
+        <table cellSpacing={0} cellPadding={0} style={{ margin: "auto", border: "0" }}>
           <tbody>
             <tr>
-              <td style={{ padding: "80px 25px 0px" }}>
-                {renderHeader(certificate)}
-              </td>
+              <td style={{ padding: "80px 25px 0px" }}>{renderHeader(certificate)}</td>
             </tr>
             <tr>
               <td style={{ padding: "0 15px" }}>
@@ -419,17 +399,14 @@ export const TrnascriptTemplate: FunctionComponent<TemplateProps<SMUOpencertsTem
                   <tbody>
                     <tr style={{ padding: "0 10px" }}>
                       <th style={{ textAlign: "left", width: "66%" }}>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        Course Description
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Course Description
                       </th>
                       <th style={{ textAlign: "center", width: "13%" }}>
                         Units
                         <br /> taken/earned
                       </th>
-                      <th style={{ textAlign: "center", width: "8%" }}>
-                        grade
-                      </th>
-                      <th style={{ textAlign: "center", width:"13%" }}>
+                      <th style={{ textAlign: "center", width: "8%" }}>grade</th>
+                      <th style={{ textAlign: "center", width: "13%" }}>
                         grade points <br /> per unit
                       </th>
                     </tr>
@@ -463,9 +440,7 @@ export const TrnascriptTemplate: FunctionComponent<TemplateProps<SMUOpencertsTem
               <td style={{ width: "20%" }}>
                 <hr style={{ border: "1px solid black" }} />
               </td>
-              <td style={{ width: "20%" }}>
-                {currentPage === pageCount ? "End of Transcript" : "Continued"}
-              </td>
+              <td style={{ width: "20%" }}>{currentPage === pageCount ? "End of Transcript" : "Continued"}</td>
               <td style={{ width: "20%" }}>
                 <hr style={{ border: "1px solid black" }} />
               </td>
@@ -483,21 +458,21 @@ export const TrnascriptTemplate: FunctionComponent<TemplateProps<SMUOpencertsTem
 
   parent.push(
     <div
-        key={(keyCount += 1).toString()}
-        className="transcript"
-        style={{
-          width: "1000px",
-          margin: "auto",
-          backgroundRepeat: "no-repeat",
-          backgroundImage: `url('${TRANS_BACK_IMG}')`,
-          marginTop: "60px",
-          padding: "40px 30px",
-          backgroundSize: "cover",
-          backgroundPosition: "canter center",
-          height: "1290px",
-          position: "relative"
-        }}
-      ></div>
+      key={(keyCount += 1).toString()}
+      className="transcript"
+      style={{
+        width: "1000px",
+        margin: "auto",
+        backgroundRepeat: "no-repeat",
+        backgroundImage: `url('${TRANS_BACK_IMG}')`,
+        marginTop: "60px",
+        padding: "40px 30px",
+        backgroundSize: "cover",
+        backgroundPosition: "canter center",
+        height: "1290px",
+        position: "relative"
+      }}
+    />
   );
 
   return (

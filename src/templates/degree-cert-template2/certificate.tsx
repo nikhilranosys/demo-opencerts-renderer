@@ -14,7 +14,7 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
   document
 }) => {
   const certificate = document;
-  
+
   // Declaring what variables will be available to the template from the certificate
   const certificateName = get(certificate, "name");
   const recipientName = get(certificate, "recipient.name");
@@ -28,26 +28,39 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
 
   const awardDate = format(attainmentDate, "DD MMMM YYYY");
 
-  let index = certificateName.toUpperCase().indexOf("GRADUATE DIPLOMA IN");
-  let start = index + 20;
+  const index = certificateName.toUpperCase().indexOf("GRADUATE DIPLOMA IN");
+  const start = index + 20;
   const degreeFirstPart = certificateName.substring(0, start);
-  const degreeSecondPart = certificateName.substring(start  , certificateName.length);
+  const degreeSecondPart = certificateName.substring(start, certificateName.length);
 
   let degreeName = null;
 
-  if(index == -1)
-  {
-    degreeName = (<div className="col-md-12" style={{
-                    fontSize: getDegreeFontSize(certificateName) + "px"
-                  }}>{certificateName}</div>);
+  if (index == -1) {
+    degreeName = (
+      <div
+        className="col-md-12"
+        style={{
+          fontSize: getDegreeFontSize(certificateName) + "px"
+        }}
+      >
+        {certificateName}
+      </div>
+    );
+  } else {
+    degreeName = (
+      <div
+        className="col-md-12"
+        style={{
+          fontSize: getDegreeFontSize(degreeSecondPart) + "px"
+        }}
+      >
+        {degreeFirstPart}
+        <br />
+        {degreeSecondPart}
+      </div>
+    );
   }
-  else
-  {
-    degreeName = (<div className="col-md-12" style={{
-                    fontSize: getDegreeFontSize(degreeSecondPart) + "px"
-                  }}>{degreeFirstPart}<br/>{degreeSecondPart}</div>);
-  }
-  
+
   return (
     <>
       <PrintWatermark />
@@ -65,10 +78,7 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
           position: "relative"
         }}
       >
-        <div
-          className="col-md-12 text-center"
-          style={{ fontFamily: "sarif" }}
-        >
+        <div className="col-md-12 text-center" style={{ fontFamily: "sarif" }}>
           <div
             className="row"
             style={{
@@ -101,7 +111,9 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
               maxHeight: "250px"
             }}
           >
-            <div className="col-md-12"><span style={{ fontWeight: "normal" }}>on</span> {awardDate}</div>
+            <div className="col-md-12">
+              <span style={{ fontWeight: "normal" }}>on</span> {awardDate}
+            </div>
           </div>
           <div
             className="row"
@@ -115,36 +127,32 @@ export const CertificateTemplate: FunctionComponent<TemplateProps<SMUOpencertsTe
             <div
               style={{
                 width: "40%",
-                paddingRight: "25px", 
+                paddingRight: "25px",
                 lineHeight: "200px",
                 paddingLeft: "200px"
               }}
             >
-              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5" }}>
                 <img src={signature1} alt="" className="cert_sign2" />
-                <div style={{ padding: (signature3 == undefined ? "0" : "5") + "px" }}></div>
+                <div style={{ padding: (signature3 == undefined ? "0" : "5") + "px" }} />
                 <img src={signature3} alt="" className="cert_sign2" />
               </span>
             </div>
             <div style={{ width: "20%", lineHeight: "200px" }}>
-              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5" }}>
                 <img src={seal} alt="" className="cert_seal" />
               </span>
             </div>
-            <div
-              style={{ width: "40%", paddingLeft: "25px", lineHeight: "200px", paddingRight: "150px" }}
-            >
-              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5"}}>
+            <div style={{ width: "40%", paddingLeft: "25px", lineHeight: "200px", paddingRight: "150px" }}>
+              <span style={{ verticalAlign: "middle", display: "inline-block", lineHeight: "1.5" }}>
                 <img src={signature2} alt="" className="cert_sign22" />
-                <div style={{ padding: (signature3 == undefined ? "0" : "5") + "px" }}></div>
+                <div style={{ padding: (signature3 == undefined ? "0" : "5") + "px" }} />
                 <img src={signature4} alt="" className="cert_sign22" />
               </span>
             </div>
           </div>
         </div>
-        <div className="serial-number">
-          {SerialNumber}
-        </div>
+        <div className="serial-number">{SerialNumber}</div>
       </div>
     </>
   );
