@@ -9,7 +9,7 @@ export const PrintWatermark: FunctionComponent = () => (
       opacity: 0;
       display: none;
       position: absolute;
-      background-image: url("/static/images/watermark.svg");
+      background-color: blue;
       background-repeat: repeat;
 
       @media print {
