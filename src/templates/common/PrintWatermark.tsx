@@ -9,8 +9,8 @@ export const PrintWatermark: FunctionComponent = () => (
       opacity: 0;
       display: none;
       position: absolute;
-      background-color: blue;
       background-repeat: repeat;
+      z-index:1000;
 
       @media print {
         width: 100%;
